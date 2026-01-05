@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Route;
 
+use Core\Container\Container;
 use Core\Route\Attribute\Route;
 use ReflectionClass;
 use ReflectionMethod;
@@ -23,6 +24,16 @@ class Router
      * @var array Liste des paramètres extraits de la dernière route matchée.
      */
     private array $params = [];
+
+    /**
+     * @var Container
+     */
+    private Container $container;
+
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
+    }
 
     /**
      * Ajoute une route manuellement.
@@ -158,9 +169,9 @@ class Router
             throw new RuntimeException("Controller class $controllerName not found");
         }
 
-        $controller = new $controllerName();
+        $controller = $this->container->get($controllerName);
 
-        // On pourrait passer les paramètres ici via reflection ou simplement les rendre dispo
-        call_user_func_array([$controller, $methodName], $this->params);
+        // Execute action with dependency injection and route parameters
+        $this->container->call([$controller, $methodName], $this->params);
     }
 }

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Core;
 
+use Core\Connection\Connection;
+use Core\Container\Container;
 use Core\Route\Router;
 
 /**
@@ -16,6 +18,8 @@ class Kernel
      * @var Router
      */
     private Router $router;
+    private Container $container;
+    private Connection $connection;
 
     /**
      * @var string Chemin racine du projet.
@@ -25,7 +29,13 @@ class Kernel
     public function __construct(string $rootDir)
     {
         $this->rootDir = rtrim($rootDir, DIRECTORY_SEPARATOR);
-        $this->router = new Router();
+        $this->container = new Container();
+        $this->router = new Router($this->container);
+        $this->connection = new Connection();
+
+        $this->container->set(Container::class, $this->container);
+        $this->container->set(__CLASS__, $this);
+        $this->container->set(Connection::class, $this->connection);
     }
 
     /**
@@ -53,15 +63,5 @@ class Kernel
     public function handle(): void
     {
         $this->router->run();
-    }
-
-    /**
-     * Récupère l'instance du routeur.
-     *
-     * @return Router
-     */
-    public function getRouter(): Router
-    {
-        return $this->router;
     }
 }
