@@ -104,3 +104,45 @@ if (!function_exists('discover_files')) {
         return $files;
     }
 }
+
+if (!function_exists('get_error')) {
+    /**
+     * Récupère un message d'erreur spécifique depuis le tableau 'errors' en session et le supprime.
+     *
+     * @param string $key La clé du message d'erreur.
+     * @return string|null Le message d'erreur ou null.
+     */
+    function get_error(string $key): ?string
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if (!isset($_SESSION['errors'][$key])) {
+            return null;
+        }
+
+        $message = $_SESSION['errors'][$key];
+        unset($_SESSION['errors'][$key]);
+
+        return $message;
+    }
+}
+
+if (!function_exists('add_error')) {
+    /**
+     * Ajoute un message d'erreur dans le tableau 'errors' en session.
+     *
+     * @param string $key La clé du message d'erreur.
+     * @param string $message Le message d'erreur.
+     * @return void
+     */
+    function add_error(string $key, string $message): void
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $_SESSION['errors'][$key] = $message;
+    }
+}
