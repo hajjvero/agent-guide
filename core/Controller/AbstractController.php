@@ -3,10 +3,23 @@
 namespace Core\Controller;
 
 
+use Core\Validator\Validator;
 use RuntimeException;
 
 abstract class AbstractController
 {
+    /**
+     * Validate data against rules.
+     *
+     * @param array $data
+     * @param array $rules
+     * @return bool
+     */
+    protected function validate(array $data, array $rules): bool
+    {
+        return (new Validator())->validate($data, $rules);
+    }
+
     /**
      * Renders a view and returns its content as a string.
      *
@@ -17,7 +30,7 @@ abstract class AbstractController
      */
     protected function renderView(string $path, array $data = []): string
     {
-        $templatePath = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'template' . DIRECTORY_SEPARATOR . ltrim($path,DIRECTORY_SEPARATOR);
+        $templatePath = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'template' . DIRECTORY_SEPARATOR . ltrim($path, DIRECTORY_SEPARATOR);
 
         if (!str_ends_with($templatePath, '.php')) {
             $templatePath .= '.php';
