@@ -1,20 +1,23 @@
 {
-    "name": "hajjvero/agent-guide",
-    "description": "A PHP project for the HajjVero agent guide.",
-    "type": "project",
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Core\\": "core/",
-            "App\\": "src/"
-        }
+  "name": "hajjvero/agent-guide",
+  "description": "A PHP project for the HajjVero agent guide.",
+  "type": "project",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Core\\": "core/",
+      "App\\": "src/"
     },
-    "authors": [
-        {
-            "name": "HajjVero"
-        }
-    ],
-    "require": {
-      "ext-pdo": "*"
+    "files": [
+      "core/functions/functions.php"
+    ]
+  },
+  "authors": [
+    {
+      "name": "HajjVero"
     }
+  ],
+  "require": {
+    "ext-pdo": "*"
+  }
 }
