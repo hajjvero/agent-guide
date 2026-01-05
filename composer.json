@@ -1,0 +1,19 @@
+{
+    "name": "hajjvero/agent-guide",
+    "description": "A PHP project for the HajjVero agent guide.",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "Core/"
+        }
+    },
+    "authors": [
+        {
+            "name": "HajjVero"
+        }
+    ],
+    "require": {
+      "ext-pdo": "*"
+    }
+}
