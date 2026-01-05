@@ -137,14 +137,13 @@ class Router
      */
     public function run(): void
     {
-        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '/';
-        $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+        $uri = request_path();
+        $method = request_method();
 
         $action = $this->resolve($uri, $method);
 
         if ($action === null) {
-            http_response_code(404);
-            echo "404 Not Found";
+            abort(404, 'Route not found');
             return;
         }
 
