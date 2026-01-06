@@ -1,6 +1,5 @@
 <?php
-// Variables: $products, $categories, $currentCategory
-include "./layaout/header.php";
+include __DIR__ . '/../layaout/header.php';
 ?>
 
 <!-- PAGE HEADER -->
@@ -15,20 +14,7 @@ include "./layaout/header.php";
 <section class="filter-bar">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-8">
-                <div class="d-flex flex-wrap gap-2">
-                    <a href="/shop" class="filter-btn <?= !$currentCategory ? 'active' : '' ?>">
-                        All Products
-                    </a>
-                    <?php foreach ($categories as $category): ?>
-                        <a href="/shop?category=<?= $category->getId() ?>" 
-                           class="filter-btn <?= $currentCategory == $category->getId() ? 'active' : '' ?>">
-                            <?= htmlspecialchars($category->{'getName' . ucfirst($lang)}()) ?>
-                        </a>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-            <div class="col-md-4">
+            <div class="col-12">
                 <div class="search-box-small">
                     <input type="text" id="product-search" class="form-control" 
                            placeholder="Search products...">
@@ -42,68 +28,183 @@ include "./layaout/header.php";
 <!-- PRODUCTS GRID -->
 <section class="products-section">
     <div class="container">
-        <?php if (empty($products)): ?>
-            <div class="text-center py-5">
-                <i class="bi bi-box-seam" style="font-size: 4rem; color: var(--gold);"></i>
-                <h3 class="mt-3">No products found</h3>
-                <p class="text-muted">Try adjusting your filters or search terms</p>
-                <a href="/shop" class="btn-morocco mt-3">View All Products</a>
-            </div>
-        <?php else: ?>
-            <div class="row g-4" id="product-grid">
-                <?php foreach ($products as $product): ?>
-                    <div class="col-lg-3 col-md-4 col-sm-6 product-item" 
-                         data-name="<?= strtolower($product->{'getName' . ucfirst($lang)}()) ?>">
-                        <?php include __DIR__ . '/../components/product-card.php'; ?>
+        <div class="row g-4" id="product-grid">
+            <!-- Product 1 -->
+            <div class="col-lg-3 col-md-4 col-sm-6 product-item" data-name="ceramic tagine">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTwcrBVKtkEm97TtYOAznHGoqXkmKqwFLrOQ&s" alt="Ceramic Tagine">
+                        <span class="product-badge">New</span>
+                        <button class="wishlist-btn"><i class="bi bi-heart"></i></button>
                     </div>
-                <?php endforeach; ?>
+                    <div class="product-body">
+                        <div class="product-category">Pottery</div>
+                        <h6 class="product-title"><a href="#">Ceramic Tagine</a></h6>
+                        <p class="product-description">Hand-painted clay tagine from Safi, perfect for slow cooking.</p>
+                        <div class="product-price">
+                            <span class="price">180 MAD</span>
+                            <button class="add-cart-btn"><i class="bi bi-cart-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <!-- Pagination -->
-            <?php if (isset($totalPages) && $totalPages > 1): ?>
-                <nav class="mt-5">
-                    <ul class="pagination justify-content-center">
-                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                            <li class="page-item <?= $i == $currentPage ? 'active' : '' ?>">
-                                <a class="page-link" href="/shop?page=<?= $i ?><?= $currentCategory ? '&category=' . $currentCategory : '' ?>">
-                                    <?= $i ?>
-                                </a>
-                            </li>
-                        <?php endfor; ?>
-                    </ul>
-                </nav>
-            <?php endif; ?>
-        <?php endif; ?>
+
+            <!-- Product 2 -->
+            <div class="col-lg-3 col-md-4 col-sm-6 product-item" data-name="beni ourain rug">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://cdn20.pamono.com/p/g/1/5/1583539_flawf9el2h/vintage-moroccan-beni-ourain-rug-2.jpg" alt="Beni Ourain Rug">
+                        <button class="wishlist-btn"><i class="bi bi-heart"></i></button>
+                    </div>
+                    <div class="product-body">
+                        <div class="product-category">Rugs</div>
+                        <h6 class="product-title"><a href="#">Beni Ourain Rug</a></h6>
+                        <p class="product-description">Authentic wool rug handmade by Berber artisans in the Atlas.</p>
+                        <div class="product-price">
+                            <span class="price">2,500 MAD</span>
+                            <button class="add-cart-btn"><i class="bi bi-cart-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="col-lg-3 col-md-4 col-sm-6 product-item" data-name="leather satchel">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Leather Satchel">
+                        <button class="wishlist-btn"><i class="bi bi-heart"></i></button>
+                    </div>
+                    <div class="product-body">
+                        <div class="product-category">Leather</div>
+                        <h6 class="product-title"><a href="#">Leather Satchel</a></h6>
+                        <p class="product-description">Durable and stylish handcrafted leather bag from Fez tanneries.</p>
+                        <div class="product-price">
+                            <span class="price">650 MAD</span>
+                            <button class="add-cart-btn"><i class="bi bi-cart-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="col-lg-3 col-md-4 col-sm-6 product-item" data-name="silver fibula">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Silver Fibula">
+                        <span class="product-badge sale">Sale</span>
+                        <button class="wishlist-btn"><i class="bi bi-heart"></i></button>
+                    </div>
+                    <div class="product-body">
+                        <div class="product-category">Jewelry</div>
+                        <h6 class="product-title"><a href="#">Silver Fibula</a></h6>
+                        <p class="product-description">Traditional Berber silver brooch from Tiznit.</p>
+                        <div class="product-price">
+                            <span class="price">320 MAD</span>
+                            <button class="add-cart-btn"><i class="bi bi-cart-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="col-lg-3 col-md-4 col-sm-6 product-item" data-name="moroccan spices set">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Moroccan Spices Set">
+                        <button class="wishlist-btn"><i class="bi bi-heart"></i></button>
+                    </div>
+                    <div class="product-body">
+                        <div class="product-category">Spices</div>
+                        <h6 class="product-title"><a href="#">Moroccan Spices Set</a></h6>
+                        <p class="product-description">A curated selection of Ras el Hanout, Saffron, and Cumin.</p>
+                        <div class="product-price">
+                            <span class="price">120 MAD</span>
+                            <button class="add-cart-btn"><i class="bi bi-cart-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="col-lg-3 col-md-4 col-sm-6 product-item" data-name="blue fes pottery">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBW4mYHtmUUVrbzTbTf2Jifwp3McI9uTwWNw&s" alt="Blue Fes Pottery">
+                        <button class="wishlist-btn"><i class="bi bi-heart"></i></button>
+                    </div>
+                    <div class="product-body">
+                        <div class="product-category">Pottery</div>
+                        <h6 class="product-title"><a href="#">Blue Fes Pottery</a></h6>
+                        <p class="product-description">Intricate geometric designs on classic Fessi ceramics.</p>
+                        <div class="product-price">
+                            <span class="price">240 MAD</span>
+                            <button class="add-cart-btn"><i class="bi bi-cart-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="col-lg-3 col-md-4 col-sm-6 product-item" data-name="kilim pillow">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://akamai-scene7.grandinroad.com/is/image/frontgate/T_Template?$GR_UPDP_Hero_SM$&$src=frontgate/41141_main" alt="Kilim Pillow">
+                        <button class="wishlist-btn"><i class="bi bi-heart"></i></button>
+                    </div>
+                    <div class="product-body">
+                        <div class="product-category">Rugs</div>
+                        <h6 class="product-title"><a href="#">Kilim Pillow</a></h6>
+                        <p class="product-description">Vibrant vintage textile pillow cover.</p>
+                        <div class="product-price">
+                            <span class="price">200 MAD</span>
+                            <button class="add-cart-btn"><i class="bi bi-cart-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="col-lg-3 col-md-4 col-sm-6 product-item" data-name="leather babouches">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRexOKHtJQBuLQTaKctWF5IID0_ETxhndUJkA&s" alt="Leather Babouches">
+                        <button class="wishlist-btn"><i class="bi bi-heart"></i></button>
+                    </div>
+                    <div class="product-body">
+                        <div class="product-category">Leather</div>
+                        <h6 class="product-title"><a href="#">Leather Babouches</a></h6>
+                        <p class="product-description">Traditional Moroccan slippers, yellow and comfortable.</p>
+                        <div class="product-price">
+                            <span class="price">150 MAD</span>
+                            <button class="add-cart-btn"><i class="bi bi-cart-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- NEWSLETTER SECTION -->
-<section class="newsletter-section">
-    <div class="container text-center">
-        <h3>Get Exclusive Offers</h3>
-        <p>Subscribe to receive artisan stories and special deals</p>
-        <form class="newsletter-form mt-4">
-            <div class="input-group justify-content-center">
-                <input type="email" class="form-control" placeholder="Your email address" style="max-width: 400px;">
-                <button class="btn-gold" type="submit">Subscribe</button>
-            </div>
-        </form>
-    </div>
-</section>
-
+<!-- Simple search script -->
 <script>
-// Real-time product search
-document.getElementById('product-search')?.addEventListener('input', function(e) {
-    const searchTerm = e.target.value.toLowerCase();
-    const products = document.querySelectorAll('.product-item');
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('product-search');
+    const productItems = document.querySelectorAll('.product-item');
     
-    products.forEach(product => {
-        const productName = product.getAttribute('data-name');
-        if (productName.includes(searchTerm)) {
-            product.style.display = 'block';
-        } else {
-            product.style.display = 'none';
-        }
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        
+        productItems.forEach(item => {
+            const productName = item.getAttribute('data-name');
+            if (productName.includes(searchTerm)) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
     });
 });
 </script>
+
+<?php include __DIR__ . '/../layaout/footer.php'; ?>
