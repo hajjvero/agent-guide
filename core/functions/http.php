@@ -74,6 +74,21 @@ if (!function_exists('request_method')) {
     }
 }
 
+if (!function_exists('get_host')) {
+    function get_host(): string
+    {
+        $isHttps =
+            (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+            || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
+            || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443);
+
+        $scheme = $isHttps ? 'https' : 'http';
+        $host   = $_SERVER['HTTP_HOST'] ?? 'localhost';
+
+        return $scheme . '://' . $host;
+    }
+}
+
 if (!function_exists('request_path')) {
     /**
      * Retourne le chemin de la requête actuelle.
