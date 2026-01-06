@@ -1,6 +1,8 @@
 <?php
 // This component expects $product to be available
 // Usage: include this file wherever you need to display a product card
+
+
 ?>
 
 <div class="product-card">
