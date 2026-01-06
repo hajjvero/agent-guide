@@ -6,7 +6,7 @@
             <!-- Brand & About -->
             <div class="col-lg-4 col-md-6">
                 <a href="/" class="footer-brand mb-4 d-block">
-                    <i class="fas fa-chess-rook me-2"></i>Morocco<span>Guide</span>
+                    <i class="fas fa-chess-rook me-2"></i>Guide<span>Agent</span>
                 </a>
                 <p class="footer-text mb-4">
                     Experience the magic of Morocco. From the bustling souks of Marrakech to the serene sands of Merzouga, we are your trusted companion for an unforgettable journey.

@@ -12,4 +12,10 @@ class HomeController extends AbstractController
     {
         $this->render('pages/home');
     }
+
+    #[Route(path: '/shop', name: 'shop')]
+    public function shop(): void
+    {
+        $this->render('pages/shop');
+    }
 }

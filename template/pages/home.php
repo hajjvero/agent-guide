@@ -214,9 +214,9 @@ include __DIR__ . '/../../template/layaout/header.php';
                         patrimoine culturel.</p>
                     <p class="mb-4">Tapis berbères, céramiques de Fès, caftans brodés, lanternes en métal et produits de
                         beauté naturels - découvrez l'authenticité du Maroc.</p>
-                    <button class="btn btn-custom">
+                    <a href="/shop" class="btn btn-custom">
                         <i class="fas fa-shopping-bag me-2"></i> Visiter la boutique
-                    </button>
+                    </a>
                 </div>
 
                 <div class="col-lg-7">
