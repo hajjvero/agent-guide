@@ -1,6 +1,5 @@
 <?php
-// This file will be rendered by HomeController
-include "./layaout/header.php";
+include __DIR__ . '/../../template/layaout/header.php';
 ?>
 
     <!-- Hero Section avec fond animé -->
@@ -265,5 +264,5 @@ include "./layaout/header.php";
     </section>
 
 <?php
-include "./layaout/footer.php";
+include __DIR__ . '/../../template/layaout/footer.php';
 ?>
