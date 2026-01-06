@@ -57,5 +57,6 @@ abstract class AbstractController
     protected function render(string $path, array $data = []): void
     {
         echo $this->renderView($path, $data);
+        exit;
     }
 }
