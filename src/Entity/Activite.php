@@ -12,7 +12,7 @@ class Activite
     |--------------------------------------------------------------------------
     |
     */
-    private int $id;
+    private ?int $id;
     private string $titleAr;
     private string $titleFr;
     private string $titleEn;
@@ -56,9 +56,15 @@ class Activite
     |--------------------------------------------------------------------------
     |
     */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(?int $id): self
+    {
+        $this->id = $id;
+        return $this;
     }
 
     public function getTitleAr(): string

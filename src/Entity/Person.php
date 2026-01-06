@@ -13,7 +13,7 @@ abstract class Person
     |
     */
 
-    protected int $id;
+    protected ?int $id;
     protected string $fullNameAr;
     protected string $fullNameFr;
     protected string $fullNameEn;
@@ -42,12 +42,12 @@ abstract class Person
     |--------------------------------------------------------------------------
     |
     */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setId(int $id): self
+    public function setId(?int $id): self
     {
         $this->id = $id;
         return $this;

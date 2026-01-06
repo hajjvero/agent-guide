@@ -10,7 +10,7 @@ class Category
     |--------------------------------------------------------------------------
     |
     */
-    private int $id;
+    private ?int $id;
 
     private string $nameAr;
     private string $nameFr;
@@ -52,9 +52,15 @@ class Category
     |
     */
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(?int $id): self
+    {
+        $this->id = $id;
+        return $this;
     }
 
     public function getNameAr(): string

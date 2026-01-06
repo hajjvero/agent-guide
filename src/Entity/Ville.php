@@ -13,7 +13,7 @@ class Ville
     |
     */
 
-    private int $id;
+    private ?int $id;
 
     private string $nameAr;
     private string $nameFr;
@@ -64,12 +64,12 @@ class Ville
     |
     */
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setId(int $id): self
+    public function setId(?int $id): self
     {
         $this->id = $id;
         return $this;

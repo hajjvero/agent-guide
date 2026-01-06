@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Route;
 
+use Core\Container\Container;
 use Core\Route\Attribute\Route;
 use ReflectionClass;
 use ReflectionMethod;
@@ -23,6 +24,16 @@ class Router
      * @var array Liste des paramètres extraits de la dernière route matchée.
      */
     private array $params = [];
+
+    /**
+     * @var Container
+     */
+    private Container $container;
+
+    public function __construct(Container $container)
+    {
+        $this->container = $container;
+    }
 
     /**
      * Ajoute une route manuellement.
@@ -49,28 +60,33 @@ class Router
         // On récupère le préfixe de route sur la classe si présent
         $classAttributes = $reflection->getAttributes(Route::class);
         $prefix = '';
+        $prefixName = '';
         if (!empty($classAttributes)) {
             /** @var Route $classRoute */
             $classRoute = $classAttributes[0]->newInstance();
             $prefix = $classRoute->getPath();
+            $prefixName = $classRoute->getName();
         }
 
         foreach ($reflection->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
             $attributes = $method->getAttributes(Route::class);
-            foreach ($attributes as $attribute) {
-                /** @var Route $route */
-                $route = $attribute->newInstance();
-
-                // On fusionne le préfixe et le path de la méthode
-                $methodPath = $route->getPath();
-                if ($prefix !== '/' && $prefix !== '') {
-                    $fullPath = rtrim($prefix, '/') . '/' . ltrim($methodPath, '/');
-                    $route->setPath($fullPath);
-                }
-
-                $route->setAction([$controller, $method->getName()]);
-                $this->addRoute($route);
+            if (empty($attributes)) {
+                continue;
             }
+
+            /** @var Route $route */
+            $route = $attributes[0]->newInstance();
+
+            // On fusionne le préfixe et le path de la méthode
+            $methodPath = $route->getPath();
+            if ($prefix !== '/' && $prefix !== '') {
+                $fullPath = rtrim($prefix, '/') . '/' . ltrim($methodPath, '/');
+                $route->setPath($fullPath);
+                $route->setName($prefixName . $route->getName());
+            }
+
+            $route->setAction([$controller, $method->getName()]);
+            $this->addRoute($route);
         }
     }
 
@@ -137,14 +153,13 @@ class Router
      */
     public function run(): void
     {
-        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '/';
-        $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+        $uri = request_path();
+        $method = request_method();
 
         $action = $this->resolve($uri, $method);
 
         if ($action === null) {
-            http_response_code(404);
-            echo "404 Not Found";
+            abort(404, 'Route not found');
             return;
         }
 
@@ -154,9 +169,9 @@ class Router
             throw new RuntimeException("Controller class $controllerName not found");
         }
 
-        $controller = new $controllerName();
+        $controller = $this->container->get($controllerName);
 
-        // On pourrait passer les paramètres ici via reflection ou simplement les rendre dispo
-        call_user_func_array([$controller, $methodName], $this->params);
+        // Execute action with dependency injection and route parameters
+        $this->container->call([$controller, $methodName], $this->params);
     }
 }
