@@ -150,7 +150,7 @@ class VilleRepository extends AbstractRepository
     public function mapToObject(array $data): Ville
     {
         $ville = new Ville();
-        $ville->setId($data['id'] ? (int) $data['id'] : null);
+        $ville->setId(isset($data['id']) ? (int) $data['id'] : null);
         $ville->setNameAr($data['name_ar']);
         $ville->setNameFr($data['name_fr']);
         $ville->setNameEn($data['name_en']);

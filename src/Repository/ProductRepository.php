@@ -160,7 +160,7 @@ class ProductRepository extends AbstractRepository
     public function mapToObject(array $data): Product
     {
         $product = new Product();
-        $product->setId($data['id'] ? (int) $data['id'] : null);
+        $product->setId(isset($data['id']) ? (int) $data['id'] : null);
         $product->setNameAr($data['name_ar']);
         $product->setNameFr($data['name_fr']);
         $product->setNameEn($data['name_en']);

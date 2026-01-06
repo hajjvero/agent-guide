@@ -163,7 +163,7 @@ class RestaurantRepository extends AbstractRepository
     public function mapToObject(array $data): Restaurant
     {
         $restaurant = new Restaurant();
-        $restaurant->setId($data['id'] ? (int) $data['id'] : null);
+        $restaurant->setId(isset($data['id']) ? (int) $data['id'] : null);
         $restaurant->setNameAr($data['name_ar']);
         $restaurant->setNameFr($data['name_fr']);
         $restaurant->setNameEn($data['name_en']);
