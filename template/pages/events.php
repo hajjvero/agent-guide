@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . '/../layaout/header.php';
+include __DIR__ . '/../../template/layaout/header.php';
 ?>
 
 <!-- PAGE HEADER -->
@@ -408,6 +408,4 @@ include __DIR__ . '/../layaout/header.php';
 }
 </style>
 
-<?php
-include __DIR__ . '/../layaout/footer.php';
-?>
+<?php include __DIR__ . '/../../template/layaout/footer.php'; ?>

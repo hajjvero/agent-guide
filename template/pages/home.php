@@ -127,7 +127,7 @@ include __DIR__ . '/../../template/layaout/header.php';
                         </div>
                         <h4>Événements & Festivals</h4>
                         <p>Accédez aux événements culturels et sportifs marocains. Réservez vos billets ici .</p>
-                        <a href="#" class="text-decoration-none" style="color: var(--maroon-red); font-weight: 500;">
+                        <a href="/events" class="text-decoration-none" style="color: var(--maroon-red); font-weight: 500;">
                             Participer <i class="fas fa-arrow-right ms-1"></i>
                         </a>
                     </div>

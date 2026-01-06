@@ -41,7 +41,7 @@
                         <a class="nav-link" href="/restaurants">Restaurant</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/#Événements">Événements</a>
+                        <a class="nav-link" href="/events">Événements</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/shop">Shopping</a>
