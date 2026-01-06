@@ -166,7 +166,7 @@ class LogementRepository extends AbstractRepository
     public function mapToObject(array $data): Logement
     {
         $logement = new Logement();
-        $logement->setId($data['id'] ? (int) $data['id'] : null);
+        $logement->setId(isset($data['id']) ? (int) $data['id'] : null);
         $logement->setNameAr($data['name_ar']);
         $logement->setNameFr($data['name_fr']);
         $logement->setNameEn($data['name_en']);

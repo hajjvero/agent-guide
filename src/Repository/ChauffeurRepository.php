@@ -154,7 +154,7 @@ class ChauffeurRepository extends AbstractRepository
     public function mapToObject(array $data): Chauffeur
     {
         $chauffeur = new Chauffeur();
-        $chauffeur->setId($data['id'] ? (int) $data['id'] : null);
+        $chauffeur->setId(isset($data['id']) ? (int) $data['id'] : null);
         $chauffeur->setFullNameAr($data['full_name_ar']);
         $chauffeur->setFullNameFr($data['full_name_fr']);
         $chauffeur->setFullNameEn($data['full_name_en']);

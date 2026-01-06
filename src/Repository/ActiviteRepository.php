@@ -163,7 +163,7 @@ class ActiviteRepository extends AbstractRepository
     public function mapToObject(array $data): Activite
     {
         $activite = new Activite();
-        $activite->setId($data['id'] ? (int) $data['id'] : null);
+        $activite->setId(isset($data['id']) ? (int) $data['id'] : null);
         $activite->setTitleAr($data['title_ar']);
         $activite->setTitleFr($data['title_fr']);
         $activite->setTitleEn($data['title_en']);
