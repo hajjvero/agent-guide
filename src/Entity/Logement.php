@@ -12,7 +12,7 @@ class Logement
     |--------------------------------------------------------------------------
     |
     */
-    private int $id;
+    private ?int $id;
 
     private string $nameAr;
     private string $nameFr;
@@ -67,6 +67,12 @@ class Logement
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function setId(?int $id): self
+    {
+        $this->id = $id;
+        return $this;
     }
 
     public function getNameAr(): string

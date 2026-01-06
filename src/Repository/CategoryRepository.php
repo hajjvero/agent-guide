@@ -143,10 +143,10 @@ class CategoryRepository extends AbstractRepository
      * @param array $data
      * @return Category
      */
-    private function mapToObject(array $data): Category
+    public function mapToObject(array $data): Category
     {
         $category = new Category();
-        $category->setId((int) $data['id']);
+        $category->setId($data['id'] ? (int) $data['id'] : null);
         $category->setNameAr($data['name_ar']);
         $category->setNameFr($data['name_fr']);
         $category->setNameEn($data['name_en']);
