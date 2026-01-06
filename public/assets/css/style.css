@@ -378,75 +378,209 @@
         opacity: 1;
     }
 
-    /* Footer */
+
+    /* Modern Footer with Green Gradient */
     .footer {
-        background-color: var(--moroccan-green);
+        background: linear-gradient(135deg, #1a4d2e 0%, #2d5a27 50%, #1f5c3a 100%);
         color: var(--white);
         padding: 80px 0 30px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:
+            radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(139, 30, 63, 0.1) 0%, transparent 50%);
+        pointer-events: none;
+    }
+
+    .footer .container {
+        position: relative;
+        z-index: 1;
     }
 
     .footer h5 {
         color: var(--white);
         margin-bottom: 25px;
         position: relative;
-        padding-bottom: 10px;
+        padding-bottom: 15px;
+        font-family: 'Playfair Display', serif;
+        font-size: 1.3rem;
+        font-weight: 600;
     }
 
     .footer h5::after {
         content: '';
         position: absolute;
-        width: 40px;
+        width: 50px;
         height: 3px;
-        background-color: var(--maroon-red);
+        background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
         bottom: 0;
         left: 0;
+        border-radius: 2px;
     }
 
-    .footer-links {
-        list-style: none;
-        padding: 0;
+    .footer p {
+        color: rgba(255, 255, 255, 0.85);
+        line-height: 1.8;
+        font-size: 0.95rem;
     }
 
-    .footer-links li {
-        margin-bottom: 12px;
-    }
-
-    .footer-links a {
+    /* Footer Links */
+    .footer-link {
+        display: block;
         color: rgba(255, 255, 255, 0.8);
         text-decoration: none;
-        transition: all 0.3s;
+        margin-bottom: 12px;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+        position: relative;
+        padding-left: 0;
     }
 
-    .footer-links a:hover {
+    .footer-link::before {
+        content: '→';
+        position: absolute;
+        left: -20px;
+        opacity: 0;
+        transition: all 0.3s ease;
         color: var(--gold);
-        padding-left: 5px;
     }
 
-    .social-icons a {
+    .footer-link:hover {
+        color: var(--gold);
+        padding-left: 20px;
+        transform: translateX(5px);
+    }
+
+    .footer-link:hover::before {
+        left: 0;
+        opacity: 1;
+    }
+
+    /* Social Icons */
+    .social-icon {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
-        background-color: rgba(255, 255, 255, 0.1);
+        width: 45px;
+        height: 45px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 50%;
         color: var(--white);
-        margin-right: 10px;
+        margin-right: 12px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        text-decoration: none;
+        font-size: 1.1rem;
+    }
+
+    .social-icon:hover {
+        background: var(--gold);
+        color: var(--moroccan-green);
+        transform: translateY(-5px) rotate(360deg);
+        border-color: var(--gold);
+        box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+    }
+
+    /* Newsletter Form */
+    .footer .input-group {
+        margin-top: 15px;
+        position: relative;
+    }
+
+    .footer .input-group .form-control {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50px;
+        padding: 14px 140px 14px 20px;
+        color: var(--white);
+        font-size: 0.95rem;
         transition: all 0.3s;
     }
 
-    .social-icons a:hover {
-        background-color: var(--maroon-red);
-        transform: translateY(-3px);
+    .footer .input-group .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.6);
     }
 
-    .copyright {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding-top: 30px;
-        margin-top: 50px;
-        text-align: center;
-        color: rgba(255, 255, 255, 0.7);
+    .footer .input-group .form-control:focus {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: var(--gold);
+        box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+        outline: none;
     }
+
+    .footer .btn-gold {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        background: linear-gradient(135deg, var(--gold) 0%, #c9a02c 100%);
+        color: var(--moroccan-green);
+        border: none;
+        border-radius: 50px;
+        padding: 10px 30px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.3s;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+
+    .footer .btn-gold:hover {
+        background: linear-gradient(135deg, #e6c84a 0%, var(--gold) 100%);
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+    }
+
+    /* Footer Bottom */
+    .footer hr {
+        border-color: rgba(255, 255, 255, 0.2) !important;
+        margin: 50px 0 30px !important;
+        opacity: 0.5;
+    }
+
+    .footer .text-center p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        margin: 0;
+        letter-spacing: 0.5px;
+    }
+
+    /* Responsive Footer */
+    @media (max-width: 768px) {
+        .footer {
+            padding: 60px 0 30px;
+        }
+
+        .footer h5 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+        }
+
+        .footer .input-group .form-control {
+            padding: 12px 120px 12px 18px;
+        }
+
+        .footer .btn-gold {
+            padding: 8px 20px;
+            font-size: 0.85rem;
+        }
+    }
+
 
     /* Responsive */
     @media (max-width: 992px) {
