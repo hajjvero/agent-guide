@@ -24,4 +24,16 @@ class HomeController extends AbstractController
     {
         $this->render('pages/logment');
     }
+
+    #[Route(path: '/restaurants', name: 'restaurants')]
+    public function restaurants(): void
+    {
+        $this->render('pages/restaurants');
+    }
+
+    #[Route(path: '/transport', name: 'transport')]
+    public function transport(): void
+    {
+        $this->render('pages/chauffeur');
+    }
 }
