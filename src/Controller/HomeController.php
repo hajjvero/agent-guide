@@ -18,4 +18,10 @@ class HomeController extends AbstractController
     {
         $this->render('pages/shop');
     }
+
+    #[Route(path: '/logment', name: 'logment')]
+    public function logment(): void
+    {
+        $this->render('pages/logment');
+    }
 }

@@ -61,7 +61,7 @@ include __DIR__ . '/../../template/layaout/header.php';
                         <h4>Hébergement</h4>
                         <p>Hôtels, riads authentiques, maisons d'hôtes et villas de luxe dans toutes les villes du
                             Maroc.</p>
-                        <a href="/accommodations" class="text-decoration-none" style="color: var(--maroon-red); font-weight: 500;">
+                        <a href="/logment" class="text-decoration-none" style="color: var(--maroon-red); font-weight: 500;">
                             Découvrir <i class="fas fa-arrow-right ms-1"></i>
                         </a>
                     </div>
