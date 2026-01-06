@@ -7,14 +7,13 @@ use App\Repository\CategoryRepository;
 use Core\Controller\AbstractController;
 use Core\Route\Attribute\Route;
 
-#[Route(path: 'admin/product', name: 'product.')]
+#[Route(path: '/admin/product', name: 'product.')]
 class ProductController extends AbstractController
 {
     public function __construct(
         private ProductRepository $repo,
         private CategoryRepository $categoryRepo
-    ) {
-    }
+    ) {}
 
     #[Route(path: '/', name: 'index')]
     public function index(): void
@@ -36,7 +35,6 @@ class ProductController extends AbstractController
     public function store(): void
     {
         $data = input();
-
         $rules = [
             'name_ar' => 'required',
             'name_fr' => 'required',
@@ -48,15 +46,15 @@ class ProductController extends AbstractController
             'description_en' => 'required',
             'description_es' => 'required',
             'description_pt' => 'required',
-            'price' => 'required',
-            'stock' => 'required',
+            'price' => 'required|numeric',
+            'stock' => 'required|numeric',
             'image' => 'required',
-            'category_id' => 'required',
+            'category_id' => 'required|numeric',
         ];
 
         if (!$this->validate($data, $rules)) {
             $this->render('admin/product/create', [
-                'old'        => $data,
+                'old' => $data,
                 'categories' => $this->categoryRepo->findAllAsObjects()
             ]);
             return;
@@ -64,7 +62,6 @@ class ProductController extends AbstractController
 
         $product = $this->repo->mapToObject($data);
         $this->repo->save($product);
-
         redirect('/admin/product');
     }
 
@@ -72,7 +69,7 @@ class ProductController extends AbstractController
     public function edit(int $id): void
     {
         $this->render('admin/product/edit', [
-            'product'    => $this->repo->findAsObject($id),
+            'product' => $this->repo->findAsObject($id),
             'categories' => $this->categoryRepo->findAllAsObjects()
         ]);
     }
@@ -81,7 +78,6 @@ class ProductController extends AbstractController
     public function update(int $id): void
     {
         $data = input();
-
         $rules = [
             'name_ar' => 'required',
             'name_fr' => 'required',
@@ -93,16 +89,16 @@ class ProductController extends AbstractController
             'description_en' => 'required',
             'description_es' => 'required',
             'description_pt' => 'required',
-            'price' => 'required',
-            'stock' => 'required',
+            'price' => 'required|numeric',
+            'stock' => 'required|numeric',
             'image' => 'required',
-            'category_id' => 'required',
+            'category_id' => 'required|numeric',
         ];
 
         if (!$this->validate($data, $rules)) {
             $this->render('admin/product/edit', [
-                'old'        => $data,
-                'product'    => $this->repo->findAsObject($id),
+                'product' => $this->repo->findAsObject($id), // Reload product to keep ID context if needed by view, though 'old' data usually takes precedence in form
+                'old' => $data,
                 'categories' => $this->categoryRepo->findAllAsObjects()
             ]);
             return;
@@ -110,9 +106,7 @@ class ProductController extends AbstractController
 
         $product = $this->repo->mapToObject($data);
         $product->setId($id);
-
         $this->repo->save($product);
-
         redirect('/admin/product');
     }
 
