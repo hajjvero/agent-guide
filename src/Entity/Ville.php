@@ -13,7 +13,7 @@ class Ville
     |
     */
 
-    private int $id;
+    private ?int $id;
 
     private string $nameAr;
     private string $nameFr;
@@ -69,7 +69,7 @@ class Ville
         return $this->id;
     }
 
-    public function setId(int $id): self
+    public function setId(?int $id): self
     {
         $this->id = $id;
         return $this;
