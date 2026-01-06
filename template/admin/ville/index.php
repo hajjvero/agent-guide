@@ -81,11 +81,11 @@
                                                 <td><?= htmlspecialchars($ville->getNameEn(), ENT_QUOTES, 'UTF-8') ?></td>
                                                 <td><?= htmlspecialchars($ville->getNameEs(), ENT_QUOTES, 'UTF-8') ?></td>
                                                 <td><?= htmlspecialchars($ville->getNamePt(), ENT_QUOTES, 'UTF-8') ?></td>
-                                                <td><?= htmlspecialchars($ville->getDescriptionAr(), ENT_QUOTES, 'UTF-8') ?></td>
-                                                <td><?= htmlspecialchars($ville->getDescriptionFr(), ENT_QUOTES, 'UTF-8') ?></td>
-                                                <td><?= htmlspecialchars($ville->getDescriptionEn(), ENT_QUOTES, 'UTF-8') ?></td>
-                                                <td><?= htmlspecialchars($ville->getDescriptionEs(), ENT_QUOTES, 'UTF-8') ?></td>
-                                                <td><?= htmlspecialchars($ville->getDescriptionPt(), ENT_QUOTES, 'UTF-8') ?></td>
+                                                <td><?= $ville->getDescriptionAr() ?></td>
+                                                <td><?= $ville->getDescriptionFr() ?></td>
+                                                <td><?= $ville->getDescriptionEn() ?></td>
+                                                <td><?= $ville->getDescriptionEs() ?></td>
+                                                <td><?= $ville->getDescriptionPt() ?></td>
                                                 <td>
                                                     <?php if ($ville->getImage()): ?>
                                                         <img src="<?= get_host() . $ville->getImage() ?>" alt="<?= htmlspecialchars($ville->getNameFr(), ENT_QUOTES, 'UTF-8') ?>" width="100">
@@ -98,9 +98,11 @@
                                                     <a href="<?= sprintf('%s/%s',get_host(), 'admin/ville/'. $ville->getId() .'/edit')?>" class="btn btn-sm btn-primary">
                                                         <i class="bi bi-pencil"></i>
                                                     </a>
-                                                    <a href="<?= sprintf('%s/%s',get_host(), 'admin/ville/'. $ville->getId() .'/delete')?>" class="btn btn-sm btn-danger">
-                                                        <i class="bi bi-trash"></i>
-                                                    </a>
+                                                    <form action="<?= sprintf('%s/%s',get_host(), 'admin/ville/'. $ville->getId() .'/delete')?>" method="post" class="d-inline" onsubmit="return confirm('Voulez-vous vraiment supprimer cette ville ?')">
+                                                        <button type="submit" class="btn btn-sm btn-danger">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>

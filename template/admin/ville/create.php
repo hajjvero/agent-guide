@@ -59,8 +59,8 @@
                                         <div class="card-body">
                                             <div class="mb-3">
                                                 <label class="form-label">Title *</label>
-                                                <input type="text" class="form-control" name="title_ar" value="<?= $old['title_ar'] ??  ''?>">
-                                                <p class="text-danger"><?= get_error('title_ar') ?? '' ?></p>
+                                                <input type="text" class="form-control" name="name_ar" value="<?= $old['name_ar'] ??  ''?>">
+                                                <p class="text-danger"><?= get_error('name_ar') ?? '' ?></p>
                                             </div>
 
                                             <div class="mb-3">
@@ -81,8 +81,8 @@
                                         </div>
 
                                         <div class="card-body">
-                                            <input class="form-control mb-3" name="title_fr" placeholder="Title FR" required value="<?= $old['title_fr'] ?? '' ?>">
-                                            <p class="text-danger"><?= get_error('title_fr') ?? '' ?></p>
+                                            <input class="form-control mb-3" name="name_fr" placeholder="Title FR" required value="<?= $old['name_fr'] ?? '' ?>">
+                                            <p class="text-danger"><?= get_error('name_fr') ?? '' ?></p>
                                             <textarea class="form-control" name="description_fr" rows="4" maxlength="500"><?= $old['description_fr'] ?? '' ?></textarea>
                                             <p class="text-danger"><?= get_error('description_fr') ?? '' ?></p>
                                         </div>
@@ -97,8 +97,8 @@
                                         </div>
 
                                         <div class="card-body">
-                                            <input class="form-control mb-3" name="title_en" required value="<?= $old['title_en'] ?? '' ?>">
-                                            <p class="text-danger"><?= get_error('title_en') ?? '' ?></p>
+                                            <input class="form-control mb-3" name="name_en" required value="<?= $old['name_en'] ?? '' ?>">
+                                            <p class="text-danger"><?= get_error('name_en') ?? '' ?></p>
                                             <textarea class="form-control" name="description_en" rows="4" maxlength="500"><?= $old['description_en'] ?? '' ?></textarea>
                                             <p class="text-danger"><?= get_error('description_en') ?? '' ?></p>
                                         </div>
@@ -113,8 +113,8 @@
                                         </div>
 
                                         <div class="card-body">
-                                            <input class="form-control mb-3" name="title_es" required value="<?= $old['title_es'] ?? '' ?>">
-                                            <p class="text-danger"><?= get_error('title_es') ?? '' ?></p>
+                                            <input class="form-control mb-3" name="name_es" required value="<?= $old['name_es'] ?? '' ?>">
+                                            <p class="text-danger"><?= get_error('name_es') ?? '' ?></p>
                                             <textarea class="form-control" name="description_es" rows="4" maxlength="500"><?= $old['description_es'] ?? '' ?></textarea>
                                             <p class="text-danger"><?= get_error('description_es') ?? '' ?></p>
                                         </div>
@@ -129,8 +129,8 @@
                                         </div>
 
                                         <div class="card-body">
-                                            <input class="form-control mb-3" name="title_pt" required value="<?= $old['title_pt'] ?? '' ?>">
-                                            <p class="text-danger"><?= get_error('title_pt') ?? '' ?></p>
+                                            <input class="form-control mb-3" name="name_pt" required value="<?= $old['name_pt'] ?? '' ?>">
+                                            <p class="text-danger"><?= get_error('name_pt') ?? '' ?></p>
                                             <textarea class="form-control" name="description_pt" rows="4" maxlength="500"><?= $old['description_pt'] ?? '' ?></textarea>
                                             <p class="text-danger"><?= get_error('description_pt') ?? '' ?></p>
                                         </div>
